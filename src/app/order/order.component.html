@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="jumbotron" style="background: transparent !important;">
+    <div class="container text-center">
+      <h1 class="display-4" style="font-variant: small-caps;">Order Cart</h1>
+      <p
+        class="lead"
+        style="
+          font-size: x-large;
+          color: #8f29ff;
+          font-variant: small-caps;
+          font-weight: 400;
+        "
+      >
+        Order Your Dish From Here !
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row my-4" *ngIf="errMsg">
+    <div class="col text-center">
+      <div class="alert alert-danger" role="alert">{{ errMsg }}</div>
+    </div>
+  </div>
+  <div class="row mb-5" *ngIf="orders">
+    <div class="col-12 text-center">
+      <ul class="list-group">
+        <li class="list-group-item orderItem my-3" *ngFor="let order of orders">
+          <div class="media">
+            <img
+              src="{{ baseURL + order.dish.image }}"
+              class="img-fluid rounded"
+              height="200px"
+              width="200px"
+              alt="{{ order.dish.name }}"
+            />
+            <div class="media-body">
+              <h5 class="mt-0">{{ order.dish.name }}</h5>
+              <p style="font-weight: 500;">Quantity: {{ order.quantity }}</p>
+              <p style="font-weight: 500;">
+                Cost Per Piece: {{ order.dish.cost | currency: "INR" }}
+              </p>
+              <p style="font-weight: 500;">
+                Total Cost:
+                {{ order.dish.cost * order.quantity | currency: "INR" }}
+              </p>
+              <button
+                type="button"
+                (click)="removeDish(order.dish._id)"
+                class="btn btn-outline-danger"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mb-5" *ngIf="orders">
+    <div class="col-12 text-center">
+      <h1 class="lead" style="font-weight: 600;">
+        Total Cost - {{ cost | currency: "INR" }}
+      </h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="!orders">
+    <div class="col-12 text-center mb-5">
+      <div
+        class="spinner-border mb-5"
+        style="width: 5rem; height: 5rem;"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>

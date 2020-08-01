@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="jumbotron" style="background: transparent !important;">
+        <div class="container text-center">
+            <h1 class="display-4" style="font-variant: small-caps;">Register</h1>
+            <p class="lead" style="font-size: x-large; color: #8F29FF; font-variant: small-caps; font-weight: 400;">Fill this form and get Ordering</p>
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row my-4" *ngIf="errMsg">
+        <div class="col text-center">
+            <div class="alert alert-danger" role="alert">{{ errMsg }}</div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!loader">
+        <div class="col text-center my-auto">
+            <form novalidate [formGroup]="signupForm" #suForm="ngForm" (submit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" name="name" id="name" formControlName="name"
+                        placeholder="John Doe" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.name">{{ formErrors.name }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" id="email" formControlName="email"
+                        placeholder="JohnDoe@xyz.com" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.email">{{ formErrors.email }}</div>
+                </div>
+                <div class="form-group mt-5">
+                    <select class="custom-select" formControlName="admin">
+                        <option selected disabled>Admin ?</option>
+                        <option value="true">Granted</option>
+                        <option value="false">Denied</option>
+                    </select>
+                </div>
+                <div class="form-group mt-5">
+                    <select class="custom-select" formControlName="veg">
+                        <option selected disabled>Vegetarian ?</option>
+                        <option value="true">Yes</option>
+                        <option value="false">Nah</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password" formControlName="password"
+                        placeholder="JohnDoe123" required>
+                    <div class="alert alert-danger" role="alert" *ngIf="formErrors.password">{{ formErrors.password }}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col text-right"><button type="submit" [disabled]="signupForm.invalid"
+                            class="btn btn-outline-dark">Register</button></div>
+                    <div class="col text-left"><button type="reset" (click)="reset()"
+                            class="btn btn-outline-danger">Reset</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row" *ngIf="loader">
+        <div class="col-12 text-center">
+            <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>

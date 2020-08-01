@@ -1,0 +1,65 @@
+<header>
+  <nav
+    class="navbar navbar-expand-lg navbar-light"
+    style="background-color: #ebd1fe !important;"
+  >
+    <a class="navbar-brand" href="#" style="font-variant: small-caps;"
+      >FoodShala</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" style="font-weight: 500;">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/menu" routerLinkActive="active"
+            >Menu</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="admin">
+          <a class="nav-link" routerLink="/adddish" routerLinkActive="active"
+            >Add Dish</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-3" *ngIf="!username">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="!username">
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+            >Sign Up</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="!admin && username">
+          <a class="nav-link" routerLink="/order" routerLinkActive="active"
+            >Orders</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="username">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active"
+            >Profile</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="username">
+          <a class="nav-link" (click)="logOut()">LogOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

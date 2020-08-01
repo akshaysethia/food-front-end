@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="jumbotron" style="background: transparent;">
+        <div class="container text-center">
+            <h1 class="display-4" style="font-variant: small-caps;">Profile</h1>
+            <p class="lead" style="font-variant: small-caps; color: #8F29FF; font-weight: 400;">View the Info You have provided us</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" *ngIf="errMsg">
+        <div class="col text-center">
+            <div class="alert alert-light bg-dark text-light mb-5" role="alert">
+                {{ errMsg }}
+            </div>
+        </div>
+    </div>
+    <div class="row" [hidden]="name || email || veg || errMsg">
+        <div class="col text-center">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col text-center">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-warning" style="border: 1px solid white;">Name</li>
+                <li class="list-group-item text-dark" style="border: 1px solid white;">{{ name }}</li>
+                <br>
+                <li class="list-group-item list-group-item-warning" style="border: 1px solid white;">Vegeterian</li>
+                <li class="list-group-item text-dark" style="border: 1px solid white;" *ngIf="veg">Yess</li>
+                <li class="list-group-item text-dark" style="border: 1px solid white;" *ngIf="!veg">Nooo</li>
+                <br>
+                <li class="list-group-item list-group-item-warning" style="border: 1px solid white;">Email</li>
+                <li class="list-group-item text-dark" style="border: 1px solid white;">{{ email }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
